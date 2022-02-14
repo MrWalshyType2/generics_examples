@@ -116,4 +116,17 @@ public class Runner {
 		}
 		return output;
 	}
+
+	// generic wildcard, makes list logically immutable
+	// - i.e., if a List<?> exists, we cannot infer the type
+	//   at compile time (it could be any subtype of Number here)
+	//   and thus we cannot add items as the type is unknown.
+	// - items can still be removed and iterated over though
+	public static long total(List<? extends Number> list) {
+		long count = 0;
+		for (Number n : list) {
+			count += n.longValue();
+		}
+		return count;
+	}
 }
