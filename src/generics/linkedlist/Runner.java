@@ -81,6 +81,30 @@ public class Runner {
 		GenericSequence<Integer> onlyEvens = filter(mySequence, evenTest);
 		System.out.println(onlyEvens);
 	}
+	
+	// this is fine because we know the data type at compile time
+	public static void fill(GenericSequence<Integer> list, int range) {
+		for (int i = 0; i < range; i++) {
+			list.append(i);
+		}
+	}
+	
+	// ? is the wildcard symbol
+	// - accepts any data type (at runtime)
+	// - ? extends Number is an upper bound, the list will contain subtypes of Number
+	// - bounded wildcards make a collection logically immutable (we cannot add new items as we do not know the data type at compile time)
+	// - bounded wildcards do still allow us to remove items
+//	public static void brokenFill(GenericSequence<? extends Number> list, int range) {
+//		for (int i = 0; i < range; i++) {
+//			list.append(i);
+//		}
+//	}
+//	
+//	public static void brokenFill(List<? extends Number> list, int range) {
+//		for (int i = 0; i < range; i++) {
+//			list.add(i);
+//		}
+//	}
 
 	// prepare our sequence
 	public static <T> void fill(GenericLinkedList<T> list, T[] items) {
